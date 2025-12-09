@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabinet IGC - CRM Prospects</title>
-    <script src="https://apis.google.com/js/api.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #f5f5f5; }
@@ -34,6 +33,7 @@
         .btn-success { background: #10b981; color: white; }
         .btn-danger { background: #ef4444; color: white; }
         .btn:hover { opacity: 0.9; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
         
         .container { max-width: 900px; margin: 0 auto; padding: 20px; }
         
@@ -146,8 +146,8 @@
             <h2>Cabinet IGC</h2>
             <p>Conseil en Gestion de Patrimoine</p>
             <p style="font-size: 14px; color: #999;">Connectez-vous avec Google Drive pour accéder au CRM</p>
-            <button id="loginBtn" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px;">
-                🔐 Se connecter avec Google
+            <button id="loginBtn" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px;" disabled>
+                ⏳ Chargement...
             </button>
         </div>
     </div>
@@ -183,34 +183,13 @@
             <div class="section">
                 <div class="section-header">1. COORDONNÉES</div>
                 <div class="section-body">
-                    <div class="field">
-                        <label>N° fiche</label>
-                        <input type="text" id="numeroFiche">
-                    </div>
-                    <div class="field">
-                        <label>Date contact</label>
-                        <input type="date" id="dateContact">
-                    </div>
-                    <div class="field">
-                        <label>Nom</label>
-                        <input type="text" id="nom">
-                    </div>
-                    <div class="field">
-                        <label>Prénom</label>
-                        <input type="text" id="prenom">
-                    </div>
-                    <div class="field">
-                        <label>Téléphone</label>
-                        <input type="tel" id="telephone">
-                    </div>
-                    <div class="field">
-                        <label>Email</label>
-                        <input type="email" id="email">
-                    </div>
-                    <div class="field">
-                        <label>Origine</label>
-                        <input type="text" id="origine">
-                    </div>
+                    <div class="field"><label>N° fiche</label><input type="text" id="numeroFiche"></div>
+                    <div class="field"><label>Date contact</label><input type="date" id="dateContact"></div>
+                    <div class="field"><label>Nom</label><input type="text" id="nom"></div>
+                    <div class="field"><label>Prénom</label><input type="text" id="prenom"></div>
+                    <div class="field"><label>Téléphone</label><input type="tel" id="telephone"></div>
+                    <div class="field"><label>Email</label><input type="email" id="email"></div>
+                    <div class="field"><label>Origine</label><input type="text" id="origine"></div>
                 </div>
             </div>
 
@@ -227,26 +206,11 @@
                             <option>Union libre</option>
                         </select>
                     </div>
-                    <div class="field">
-                        <label>Âge prospect</label>
-                        <input type="number" id="ageProspect">
-                    </div>
-                    <div class="field">
-                        <label>Âge conjoint</label>
-                        <input type="number" id="ageConjoint">
-                    </div>
-                    <div class="field">
-                        <label>Profession prospect</label>
-                        <input type="text" id="professionProspect">
-                    </div>
-                    <div class="field">
-                        <label>Profession conjoint</label>
-                        <input type="text" id="professionConjoint">
-                    </div>
-                    <div class="field">
-                        <label>Enfants</label>
-                        <input type="text" id="enfants">
-                    </div>
+                    <div class="field"><label>Âge prospect</label><input type="number" id="ageProspect"></div>
+                    <div class="field"><label>Âge conjoint</label><input type="number" id="ageConjoint"></div>
+                    <div class="field"><label>Profession prospect</label><input type="text" id="professionProspect"></div>
+                    <div class="field"><label>Profession conjoint</label><input type="text" id="professionConjoint"></div>
+                    <div class="field"><label>Enfants</label><input type="text" id="enfants"></div>
                 </div>
             </div>
 
@@ -263,14 +227,8 @@
                             <option>Fonctionnaire</option>
                         </select>
                     </div>
-                    <div class="field">
-                        <label>Employeur prospect</label>
-                        <input type="text" id="employeurProspect">
-                    </div>
-                    <div class="field">
-                        <label>Ancienneté</label>
-                        <input type="text" id="anciennete">
-                    </div>
+                    <div class="field"><label>Employeur prospect</label><input type="text" id="employeurProspect"></div>
+                    <div class="field"><label>Ancienneté</label><input type="text" id="anciennete"></div>
                     <div class="field">
                         <label>Type contrat conjoint</label>
                         <select id="typeContratConjoint">
@@ -281,32 +239,17 @@
                             <option>Fonctionnaire</option>
                         </select>
                     </div>
-                    <div class="field">
-                        <label>Employeur conjoint</label>
-                        <input type="text" id="employeurConjoint">
-                    </div>
+                    <div class="field"><label>Employeur conjoint</label><input type="text" id="employeurConjoint"></div>
                 </div>
             </div>
 
             <div class="section">
                 <div class="section-header">4. REVENUS</div>
                 <div class="section-body">
-                    <div class="field">
-                        <label>Revenu prospect</label>
-                        <input type="number" id="revenuProspect" onchange="calculateTotal()">
-                    </div>
-                    <div class="field">
-                        <label>Revenu conjoint</label>
-                        <input type="number" id="revenuConjoint" onchange="calculateTotal()">
-                    </div>
-                    <div class="field">
-                        <label>Autres revenus</label>
-                        <textarea id="autresRevenus"></textarea>
-                    </div>
-                    <div class="field highlight">
-                        <label>TOTAL REVENUS</label>
-                        <input type="number" id="totalRevenus" readonly>
-                    </div>
+                    <div class="field"><label>Revenu prospect</label><input type="number" id="revenuProspect" onchange="calculateTotal()"></div>
+                    <div class="field"><label>Revenu conjoint</label><input type="number" id="revenuConjoint" onchange="calculateTotal()"></div>
+                    <div class="field"><label>Autres revenus</label><textarea id="autresRevenus"></textarea></div>
+                    <div class="field highlight"><label>TOTAL REVENUS</label><input type="number" id="totalRevenus" readonly></div>
                 </div>
             </div>
 
@@ -322,38 +265,18 @@
                             <option>Hébergé</option>
                         </select>
                     </div>
-                    <div class="field">
-                        <label>Loyer/Crédit mensuel</label>
-                        <input type="number" id="loyerCredit">
-                    </div>
+                    <div class="field"><label>Loyer/Crédit mensuel</label><input type="number" id="loyerCredit"></div>
                     <div class="field">
                         <label>Déjà propriétaire ?</label>
-                        <select id="dejaProprietaire">
-                            <option value="">Sélectionner...</option>
-                            <option>Oui</option>
-                            <option>Non</option>
-                        </select>
+                        <select id="dejaProprietaire"><option value="">Sélectionner...</option><option>Oui</option><option>Non</option></select>
                     </div>
                     <div class="field">
                         <label>Propriétaire 2 dernières années ?</label>
-                        <select id="proprietaire2ans">
-                            <option value="">Sélectionner...</option>
-                            <option>Oui</option>
-                            <option>Non</option>
-                        </select>
+                        <select id="proprietaire2ans"><option value="">Sélectionner...</option><option>Oui</option><option>Non</option></select>
                     </div>
-                    <div class="field">
-                        <label>Crédit en cours</label>
-                        <input type="text" id="creditEnCours">
-                    </div>
-                    <div class="field">
-                        <label>Épargne</label>
-                        <textarea id="epargne"></textarea>
-                    </div>
-                    <div class="field highlight">
-                        <label>APPORT</label>
-                        <input type="number" id="apport">
-                    </div>
+                    <div class="field"><label>Crédit en cours</label><input type="text" id="creditEnCours"></div>
+                    <div class="field"><label>Épargne</label><textarea id="epargne"></textarea></div>
+                    <div class="field highlight"><label>APPORT</label><input type="number" id="apport"></div>
                 </div>
             </div>
 
@@ -379,33 +302,14 @@
                             <option>Duplex</option>
                         </select>
                     </div>
-                    <div class="field">
-                        <label>Surface minimum (m²)</label>
-                        <input type="number" id="surfaceMin">
-                    </div>
-                    <div class="field">
-                        <label>Nombre de pièces</label>
-                        <input type="number" id="nombrePieces">
-                    </div>
-                    <div class="field highlight">
-                        <label>BUDGET MIN</label>
-                        <input type="number" id="budgetMin">
-                    </div>
-                    <div class="field highlight">
-                        <label>BUDGET MAX</label>
-                        <input type="number" id="budgetMax">
-                    </div>
-                    <div class="field">
-                        <label>Délai projet</label>
-                        <input type="text" id="delai">
-                    </div>
+                    <div class="field"><label>Surface minimum (m²)</label><input type="number" id="surfaceMin"></div>
+                    <div class="field"><label>Nombre de pièces</label><input type="number" id="nombrePieces"></div>
+                    <div class="field highlight"><label>BUDGET MIN</label><input type="number" id="budgetMin"></div>
+                    <div class="field highlight"><label>BUDGET MAX</label><input type="number" id="budgetMax"></div>
+                    <div class="field"><label>Délai projet</label><input type="text" id="delai"></div>
                     <div class="field">
                         <label>VEFA ?</label>
-                        <select id="vefa">
-                            <option value="">Sélectionner...</option>
-                            <option>Oui</option>
-                            <option>Non</option>
-                        </select>
+                        <select id="vefa"><option value="">Sélectionner...</option><option>Oui</option><option>Non</option></select>
                     </div>
                 </div>
             </div>
@@ -413,50 +317,26 @@
             <div class="section">
                 <div class="section-header">7. LOCALISATION</div>
                 <div class="section-body">
-                    <div class="field">
-                        <label>Villes</label>
-                        <input type="text" id="villes">
-                    </div>
-                    <div class="field">
-                        <label>Quartiers</label>
-                        <input type="text" id="quartiers">
-                    </div>
-                    <div class="field">
-                        <label>Proximités</label>
-                        <textarea id="proximites"></textarea>
-                    </div>
-                    <div class="field">
-                        <label>Étage/Exposition</label>
-                        <input type="text" id="etageExposition">
-                    </div>
+                    <div class="field"><label>Villes</label><input type="text" id="villes"></div>
+                    <div class="field"><label>Quartiers</label><input type="text" id="quartiers"></div>
+                    <div class="field"><label>Proximités</label><textarea id="proximites"></textarea></div>
+                    <div class="field"><label>Étage/Exposition</label><input type="text" id="etageExposition"></div>
                 </div>
             </div>
 
             <div class="section">
                 <div class="section-header">8. ÉQUIPEMENTS</div>
                 <div class="section-body">
-                    <div class="field">
-                        <label>Parking</label>
-                        <input type="text" id="parking">
-                    </div>
-                    <div class="field">
-                        <label>Balcon/Terrasse</label>
-                        <input type="text" id="balconTerrasse">
-                    </div>
-                    <div class="field">
-                        <label>Ascenseur/Normes</label>
-                        <input type="text" id="ascenseurNormes">
-                    </div>
+                    <div class="field"><label>Parking</label><input type="text" id="parking"></div>
+                    <div class="field"><label>Balcon/Terrasse</label><input type="text" id="balconTerrasse"></div>
+                    <div class="field"><label>Ascenseur/Normes</label><input type="text" id="ascenseurNormes"></div>
                 </div>
             </div>
 
             <div class="section">
                 <div class="section-header">9. FINANCEMENT</div>
                 <div class="section-body">
-                    <div class="field">
-                        <label>Capacité emprunt</label>
-                        <input type="number" id="capaciteEmprunt">
-                    </div>
+                    <div class="field"><label>Capacité emprunt</label><input type="number" id="capaciteEmprunt"></div>
                     <div class="field">
                         <label>Durée crédit</label>
                         <select id="dureeCredit">
@@ -466,42 +346,21 @@
                             <option>25 ans</option>
                         </select>
                     </div>
-                    <div class="field">
-                        <label>Mensualité max</label>
-                        <input type="number" id="mensualiteMax">
-                    </div>
+                    <div class="field"><label>Mensualité max</label><input type="number" id="mensualiteMax"></div>
                     <div class="field">
                         <label>Capacité vue courtier ?</label>
-                        <select id="capaciteVue">
-                            <option value="">Sélectionner...</option>
-                            <option>Oui</option>
-                            <option>Non</option>
-                        </select>
+                        <select id="capaciteVue"><option value="">Sélectionner...</option><option>Oui</option><option>Non</option></select>
                     </div>
-                    <div class="field">
-                        <label>Nom courtier/banque</label>
-                        <input type="text" id="nomCourtierBanque">
-                    </div>
+                    <div class="field"><label>Nom courtier/banque</label><input type="text" id="nomCourtierBanque"></div>
                     <div class="field">
                         <label>Accord principe ?</label>
-                        <select id="accordPrincipe">
-                            <option value="">Sélectionner...</option>
-                            <option>Oui</option>
-                            <option>Non</option>
-                        </select>
+                        <select id="accordPrincipe"><option value="">Sélectionner...</option><option>Oui</option><option>Non</option></select>
                     </div>
                     <div class="field">
                         <label>PTZ ?</label>
-                        <select id="ptz">
-                            <option value="">Sélectionner...</option>
-                            <option>Oui</option>
-                            <option>Non</option>
-                        </select>
+                        <select id="ptz"><option value="">Sélectionner...</option><option>Oui</option><option>Non</option></select>
                     </div>
-                    <div class="field">
-                        <label>Autres aides</label>
-                        <textarea id="autresAides"></textarea>
-                    </div>
+                    <div class="field"><label>Autres aides</label><textarea id="autresAides"></textarea></div>
                 </div>
             </div>
 
@@ -510,84 +369,42 @@
                 <div class="section-body">
                     <div class="field">
                         <label>Primo-accédant ?</label>
-                        <select id="primoAccedant">
-                            <option value="">Sélectionner...</option>
-                            <option>Oui</option>
-                            <option>Non</option>
-                        </select>
+                        <select id="primoAccedant"><option value="">Sélectionner...</option><option>Oui</option><option>Non</option></select>
                     </div>
-                    <div class="field">
-                        <label>Intérêt Pinel/LMNP</label>
-                        <input type="text" id="interetPinel">
-                    </div>
-                    <div class="field">
-                        <label>TMI</label>
-                        <input type="text" id="tmi">
-                    </div>
+                    <div class="field"><label>Intérêt Pinel/LMNP</label><input type="text" id="interetPinel"></div>
+                    <div class="field"><label>TMI</label><input type="text" id="tmi"></div>
                 </div>
             </div>
 
             <div class="section">
                 <div class="section-header">11. MOTIVATIONS</div>
                 <div class="section-body">
-                    <div class="field highlight">
-                        <label>MOTIVATION PRINCIPALE</label>
-                        <textarea id="motivationPrincipale"></textarea>
-                    </div>
-                    <div class="field">
-                        <label>Urgence (1-5)</label>
-                        <input type="number" id="urgence" value="3">
-                    </div>
-                    <div class="field">
-                        <label>Freins</label>
-                        <textarea id="freins"></textarea>
-                    </div>
-                    <div class="field">
-                        <label>Autres programmes</label>
-                        <textarea id="autresProgrammes"></textarea>
-                    </div>
+                    <div class="field highlight"><label>MOTIVATION PRINCIPALE</label><textarea id="motivationPrincipale"></textarea></div>
+                    <div class="field"><label>Urgence (1-5)</label><input type="number" id="urgence" value="3"></div>
+                    <div class="field"><label>Freins</label><textarea id="freins"></textarea></div>
+                    <div class="field"><label>Autres programmes</label><textarea id="autresProgrammes"></textarea></div>
                 </div>
             </div>
 
             <div class="section">
                 <div class="section-header">12. SUIVI</div>
                 <div class="section-body">
-                    <div class="field">
-                        <label>Commercial</label>
-                        <input type="text" id="commercial">
-                    </div>
-                    <div class="field">
-                        <label>Date relance</label>
-                        <input type="date" id="dateRelance">
-                    </div>
-                    <div class="field">
-                        <label>Biens proposés</label>
-                        <textarea id="biensPropose"></textarea>
-                    </div>
-                    <div class="field">
-                        <label>Visite ?</label>
-                        <input type="text" id="visiteProgrammee">
-                    </div>
-                    <div class="field">
-                        <label>Statut</label>
-                        <input type="text" id="statutDossier">
-                    </div>
+                    <div class="field"><label>Commercial</label><input type="text" id="commercial"></div>
+                    <div class="field"><label>Date relance</label><input type="date" id="dateRelance"></div>
+                    <div class="field"><label>Biens proposés</label><textarea id="biensPropose"></textarea></div>
+                    <div class="field"><label>Visite ?</label><input type="text" id="visiteProgrammee"></div>
+                    <div class="field"><label>Statut</label><input type="text" id="statutDossier"></div>
                 </div>
             </div>
 
             <div class="section">
                 <div class="section-header">13. NOTES</div>
                 <div class="section-body">
-                    <div class="field">
-                        <label>Observations</label>
-                        <textarea id="notes" style="min-height: 120px;"></textarea>
-                    </div>
+                    <div class="field"><label>Observations</label><textarea id="notes" style="min-height: 120px;"></textarea></div>
                 </div>
             </div>
 
-            <button class="save-btn" onclick="saveProspect()">
-                💾 ENREGISTRER SUR GOOGLE DRIVE
-            </button>
+            <button class="save-btn" onclick="saveProspect()">💾 ENREGISTRER SUR GOOGLE DRIVE</button>
         </div>
 
         <!-- LISTE DES FICHES -->
@@ -607,10 +424,12 @@
         </div>
     </div>
 
+    <!-- Scripts Google -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+    
     <script>
-        // ⚠️ REMPLACEZ PAR VOTRE CLIENT_ID
-        const CLIENT_ID = 'VOTRE_CLIENT_ID_ICI.apps.googleusercontent.com';
-        const API_KEY = 'AIzaSyDummy'; // Pas besoin de clé API pour Drive
+        const CLIENT_ID = '113276985910-7pat6u81k0isd3ndd179p4nu4foaghp3.apps.googleusercontent.com';
         const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
         const SCOPES = 'https://www.googleapis.com/auth/drive.file';
 
@@ -622,37 +441,23 @@
         let allProspects = [];
         let folderId = null;
 
-        const fields = [
-            'numeroFiche', 'dateContact', 'nom', 'prenom', 'telephone', 'email', 'origine',
-            'situation', 'ageProspect', 'ageConjoint', 'professionProspect', 'professionConjoint', 'enfants',
-            'typeContratProspect', 'employeurProspect', 'anciennete', 'typeContratConjoint', 'employeurConjoint',
-            'revenuProspect', 'revenuConjoint', 'autresRevenus', 'totalRevenus',
-            'statutActuel', 'loyerCredit', 'dejaProprietaire', 'proprietaire2ans', 'creditEnCours', 'epargne', 'apport',
-            'objectif', 'typeBien', 'surfaceMin', 'nombrePieces', 'budgetMin', 'budgetMax', 'delai', 'vefa',
-            'villes', 'quartiers', 'proximites', 'etageExposition',
-            'parking', 'balconTerrasse', 'ascenseurNormes',
-            'capaciteEmprunt', 'dureeCredit', 'mensualiteMax', 'capaciteVue', 'nomCourtierBanque', 
-            'accordPrincipe', 'ptz', 'autresAides',
-            'primoAccedant', 'interetPinel', 'tmi',
-            'motivationPrincipale', 'urgence', 'freins', 'autresProgrammes',
-            'commercial', 'dateRelance', 'biensPropose', 'visiteProgrammee', 'statutDossier',
-            'notes'
-        ];
+        const fields = ['numeroFiche', 'dateContact', 'nom', 'prenom', 'telephone', 'email', 'origine','situation', 'ageProspect', 'ageConjoint', 'professionProspect', 'professionConjoint', 'enfants','typeContratProspect', 'employeurProspect', 'anciennete', 'typeContratConjoint', 'employeurConjoint','revenuProspect', 'revenuConjoint', 'autresRevenus', 'totalRevenus','statutActuel', 'loyerCredit', 'dejaProprietaire', 'proprietaire2ans', 'creditEnCours', 'epargne', 'apport','objectif', 'typeBien', 'surfaceMin', 'nombrePieces', 'budgetMin', 'budgetMax', 'delai', 'vefa','villes', 'quartiers', 'proximites', 'etageExposition','parking', 'balconTerrasse', 'ascenseurNormes','capaciteEmprunt', 'dureeCredit', 'mensualiteMax', 'capaciteVue', 'nomCourtierBanque', 'accordPrincipe', 'ptz', 'autresAides','primoAccedant', 'interetPinel', 'tmi','motivationPrincipale', 'urgence', 'freins', 'autresProgrammes','commercial', 'dateRelance', 'biensPropose', 'visiteProgrammee', 'statutDossier','notes'];
 
-        // Initialisation
-        function gapiLoaded() {
+        window.addEventListener('load', function() {
             gapi.load('client', initializeGapiClient);
-        }
+        });
 
         async function initializeGapiClient() {
-            await gapi.client.init({
-                discoveryDocs: DISCOVERY_DOCS,
-            });
-            gapiInited = true;
-            maybeEnableButtons();
+            try {
+                await gapi.client.init({ discoveryDocs: DISCOVERY_DOCS });
+                gapiInited = true;
+                maybeEnableButtons();
+            } catch (err) {
+                console.error('Erreur init GAPI:', err);
+            }
         }
 
-        function gisLoaded() {
+        function initGIS() {
             tokenClient = google.accounts.oauth2.initTokenClient({
                 client_id: CLIENT_ID,
                 scope: SCOPES,
@@ -662,18 +467,23 @@
             maybeEnableButtons();
         }
 
+        setTimeout(initGIS, 1000);
+
         function maybeEnableButtons() {
             if (gapiInited && gisInited) {
-                document.getElementById('loginBtn').disabled = false;
+                const btn = document.getElementById('loginBtn');
+                btn.disabled = false;
+                btn.textContent = '🔐 Se connecter avec Google';
+                btn.onclick = handleAuthClick;
             }
         }
-
-        document.getElementById('loginBtn').addEventListener('click', handleAuthClick);
 
         function handleAuthClick() {
             tokenClient.callback = async (resp) => {
                 if (resp.error !== undefined) {
-                    throw (resp);
+                    console.error('Erreur auth:', resp);
+                    alert('Erreur de connexion: ' + resp.error);
+                    return;
                 }
                 accessToken = gapi.client.getToken().access_token;
                 document.getElementById('loginScreen').classList.add('hidden');
@@ -701,8 +511,13 @@
             document.getElementById('loading').classList.remove('hidden');
             document.getElementById('formView').classList.add('hidden');
             
-            await ensureFolderExists();
-            await loadProspectsFromDrive();
+            try {
+                await ensureFolderExists();
+                await loadProspectsFromDrive();
+            } catch (err) {
+                console.error('Erreur init app:', err);
+                alert('Erreur lors du chargement.');
+            }
             
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('formView').classList.remove('hidden');
@@ -711,60 +526,46 @@
         }
 
         async function ensureFolderExists() {
-            try {
-                const response = await gapi.client.drive.files.list({
-                    q: "name='CRM_IGC' and mimeType='application/vnd.google-apps.folder' and trashed=false",
-                    fields: 'files(id, name)',
-                });
+            const response = await gapi.client.drive.files.list({
+                q: "name='CRM_IGC' and mimeType='application/vnd.google-apps.folder' and trashed=false",
+                fields: 'files(id, name)',
+            });
 
-                if (response.result.files.length > 0) {
-                    folderId = response.result.files[0].id;
-                } else {
-                    const folder = await gapi.client.drive.files.create({
-                        resource: {
-                            name: 'CRM_IGC',
-                            mimeType: 'application/vnd.google-apps.folder'
-                        },
-                        fields: 'id'
-                    });
-                    folderId = folder.result.id;
-                }
-            } catch (err) {
-                console.error('Erreur création dossier:', err);
+            if (response.result.files.length > 0) {
+                folderId = response.result.files[0].id;
+            } else {
+                const folder = await gapi.client.drive.files.create({
+                    resource: { name: 'CRM_IGC', mimeType: 'application/vnd.google-apps.folder' },
+                    fields: 'id'
+                });
+                folderId = folder.result.id;
             }
         }
 
         async function loadProspectsFromDrive() {
-            try {
-                const response = await gapi.client.drive.files.list({
-                    q: `'${folderId}' in parents and trashed=false`,
-                    fields: 'files(id, name)',
-                });
+            const response = await gapi.client.drive.files.list({
+                q: `'${folderId}' in parents and trashed=false`,
+                fields: 'files(id, name)',
+            });
 
-                allProspects = [];
-                
-                for (const file of response.result.files) {
-                    try {
-                        const content = await gapi.client.drive.files.get({
-                            fileId: file.id,
-                            alt: 'media'
-                        });
-                        
-                        const prospect = typeof content.result === 'string' 
-                            ? JSON.parse(content.result) 
-                            : content.result;
-                        
-                        prospect.fileId = file.id;
-                        allProspects.push(prospect);
-                    } catch (err) {
-                        console.error('Erreur chargement fiche:', err);
-                    }
+            allProspects = [];
+            
+            for (const file of response.result.files) {
+                try {
+                    const content = await gapi.client.drive.files.get({
+                        fileId: file.id,
+                        alt: 'media'
+                    });
+                    
+                    const prospect = typeof content.result === 'string' ? JSON.parse(content.result) : content.result;
+                    prospect.fileId = file.id;
+                    allProspects.push(prospect);
+                } catch (err) {
+                    console.error('Erreur chargement fiche:', err);
                 }
-                
-                updateCount();
-            } catch (err) {
-                console.error('Erreur liste fiches:', err);
             }
+            
+            updateCount();
         }
 
         function calculateTotal() {
@@ -783,9 +584,7 @@
             }
 
             const data = { id: currentProspectId || Date.now().toString() };
-            fields.forEach(field => {
-                data[field] = document.getElementById(field).value;
-            });
+            fields.forEach(field => { data[field] = document.getElementById(field).value; });
             data.lastModified = new Date().toISOString();
 
             try {
@@ -795,7 +594,6 @@
                 let fileId = allProspects.find(p => p.id === data.id)?.fileId;
                 
                 if (fileId) {
-                    // Mise à jour
                     await gapi.client.request({
                         path: `/upload/drive/v3/files/${fileId}`,
                         method: 'PATCH',
@@ -803,7 +601,6 @@
                         body: fileContent
                     });
                 } else {
-                    // Création
                     const metadata = {
                         name: filename,
                         mimeType: 'application/json',
@@ -845,13 +642,9 @@
             fields.forEach(field => {
                 const el = document.getElementById(field);
                 if (el) {
-                    if (field === 'dateContact') {
-                        el.value = new Date().toISOString().split('T')[0];
-                    } else if (field === 'urgence') {
-                        el.value = '3';
-                    } else {
-                        el.value = '';
-                    }
+                    if (field === 'dateContact') el.value = new Date().toISOString().split('T')[0];
+                    else if (field === 'urgence') el.value = '3';
+                    else el.value = '';
                 }
             });
             currentProspectId = null;
@@ -873,9 +666,7 @@
 
         function displayProspects() {
             const search = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = allProspects.filter(p =>
-                `${p.nom} ${p.prenom} ${p.telephone}`.toLowerCase().includes(search)
-            );
+            const filtered = allProspects.filter(p => `${p.nom} ${p.prenom} ${p.telephone}`.toLowerCase().includes(search));
             
             document.getElementById('listCount').textContent = allProspects.length;
             
@@ -895,18 +686,8 @@
             `).join('');
         }
 
-        function filterList() {
-            displayProspects();
-        }
-
-        function updateCount() {
-            document.getElementById('count').textContent = allProspects.length;
-        }
-
-        // Chargement des APIs
-        gapiLoaded();
-        gisLoaded();
+        function filterList() { displayProspects(); }
+        function updateCount() { document.getElementById('count').textContent = allProspects.length; }
     </script>
-    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 </body>
 </html>
